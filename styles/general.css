@@ -1,0 +1,55 @@
+html {
+    background-color: rgb(64, 72, 114);
+}
+.large-header {
+    text-align: center;
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 48px;
+    color: white;
+    padding: 30px;
+}
+.medium-header {
+    text-align: center;
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 32px;
+    color: white;
+    padding: 20px;
+}
+.small-header {
+    text-align: center;
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 16px;
+    color: white;
+    padding: 10px;
+}
+.small-spacer {
+    padding: 20px;
+}
+.large-spacer {
+    padding: 60px;
+}
+.center {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.function {
+    font-family: 'Patrick Hand SC', cursive;
+    color: rgb(219, 150, 118);
+    font-style: italic;
+}
+.property {
+    font-family: 'Patrick Hand SC', cursive;
+    color: rgb(136, 174, 231);
+    font-style: italic;
+}
+.object {
+    font-family: 'Patrick Hand SC', cursive;
+    color: rgb(180, 180, 180);
+    font-style:normal;
+}
+.return {
+    font-family: 'Patrick Hand SC', cursive;
+    color: rgb(255, 255, 255);
+    font-style:bold;
+}

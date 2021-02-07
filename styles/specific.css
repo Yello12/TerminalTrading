@@ -1,0 +1,49 @@
+.terminal {
+    text-align: center;
+    width: 40%;
+    display: inline-block;
+    margin: 0;
+}
+.terminal-display {
+    font-family: 'Share Tech Mono', monospace;
+    color: white;
+    display: block;
+    padding: 16px;
+    text-align:left;
+    border: 2px solid white;
+    background-color: rgb(42, 49, 83);
+    border-radius : 8px;
+    width: 90%;
+    height: 250px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+.terminal-write {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: rgb(42, 49, 83);
+    color: white;
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: left;
+    outline: none;
+    border: 2px solid white;
+    border-radius : 8px;
+    width: 90%;
+    height: 50px;
+    overflow: auto;
+    white-space: pre-wrap;
+    margin-top: 8px;
+}
+.stats {
+    text-align: center;
+    display: inline-block;
+    width: 10%;
+    background-color: rgb(42, 49, 83);
+    border: 2px solid white;
+    border-radius : 8px;
+    padding: 8px;
+    height: 308px;
+    margin: auto;
+
+}

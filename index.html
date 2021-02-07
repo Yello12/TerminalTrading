@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<header>
+    <title>North East Trading Co.</title>
+    <link rel = "stylesheet" href = "styles/general.css">
+    <link rel = "stylesheet" href = "styles/specific.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src = "apps/app.js"></script>
+</header>
+<body>
+    <p class = "large-header">North East Trading Co.</p>
+    <div class = "small-spacer"></div>
+    <div class = "center">
+        <div class = "terminal">
+            <div id = "display" class = "terminal-display"></div>
+            <input id = "input" onkeypress="registerCommand(event.keyCode)" type="text" placeholder = "> Write commands here" class = "terminal-write"></input>
+        </div>
+    </div>
+    <script src = apps/commands.js></script>
+    <script src = apps/economy.js></script>
+    <script src = apps/packages.js></script>
+</body>
