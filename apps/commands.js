@@ -1,15 +1,3 @@
-const { start } = require("repl");
-
-var requests = {
-    "boxdale1023" : {
-        "origin" : "boxdale",
-        "contents" : "Letters",
-        "destination" : "Chickenface",
-        "broken" : false,
-        "packaged" : false
-    }
-}
-
 var money = 0;
 var lives = 4;
 
@@ -22,6 +10,7 @@ function registerCommand(key) {
 function command(text) {
     var command = parse(text.toLowerCase());
     printDisplay(command);
+    updateScroll();
     document.getElementById("input").value = "";
 }
 
@@ -63,11 +52,12 @@ function parse(text) {
             return JSON.stringify(requests[object]);
         } else if (object === "start") {
             startGame();
+            return "Game started"
         }
     }
     return "invalid command"
 }
 
 function printDisplay(text) {
-    document.getElementById("display").innerHTML += "> " + text + "<br>";
+    document.getElementById("display").innerHTML += "> " + text + "<br><br>";
 }

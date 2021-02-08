@@ -5,6 +5,7 @@
     margin: 0;
 }
 .terminal-display {
+    scroll-behavior: smooth;
     font-family: 'Share Tech Mono', monospace;
     color: white;
     display: block;
@@ -16,7 +17,7 @@
     width: 90%;
     height: 250px;
     overflow: auto;
-    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 .terminal-write {
     font-family: 'Share Tech Mono', monospace;
@@ -32,7 +33,6 @@
     width: 90%;
     height: 50px;
     overflow: auto;
-    white-space: pre-wrap;
     margin-top: 8px;
 }
 .stats {
