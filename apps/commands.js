@@ -19,8 +19,15 @@ function fix(object) {
         return object + " already fixed";
     } else {
         requests[object]["broken"] = false;
-        money -= 48;
-        return object + " no longer broken";
+        return object + " is no longer broken";
+    }
+}
+function package(object) {
+    if (requests[object]["packaged"] === false) {
+        return object + " already packaged";
+    } else {
+        requests[object]["packaged"] = false;
+        return object + " is no longer unpacked";
     }
 }
 function parse(text) {
@@ -34,6 +41,8 @@ function parse(text) {
                 //FUNCTION
                 if (attribute === "fix()") {
                     return fix(object);
+                } else if (attribute === "package()") {
+                    return package(object);
                 } else {return "Invalid function"}
             } else {
                 //PROPERTY
