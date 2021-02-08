@@ -1,6 +1,7 @@
 html {
     background-color: rgb(64, 72, 114);
 }
+p {display:inline;font-family: 'Share Tech Mono', monospace;}
 .large-header {
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;
@@ -33,23 +34,27 @@ html {
     margin: 0;
     padding: 0;
 }
+.error {
+    color: rgb(219, 118, 118);
+    font-style: italic;
+}
+.warning {
+    color: rgb(219, 204, 118);
+    font-style: italic;
+}
 .function {
-    font-family: 'Patrick Hand SC', cursive;
-    color: rgb(219, 150, 118);
+    color: rgb(243, 179, 149);
     font-style: italic;
 }
 .property {
-    font-family: 'Patrick Hand SC', cursive;
     color: rgb(136, 174, 231);
     font-style: italic;
 }
 .object {
-    font-family: 'Patrick Hand SC', cursive;
     color: rgb(180, 180, 180);
     font-style:normal;
 }
-.return {
-    font-family: 'Patrick Hand SC', cursive;
-    color: rgb(255, 255, 255);
+.new {
+    color: rgb(164, 255, 164);
     font-style:bold;
 }
