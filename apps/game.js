@@ -7,14 +7,17 @@ class Game {
         this.names;
         this.request;
         this.removal;
+        this.timing_range = 5000;
         this.cost = 120;
         document.getElementById("stats").innerHTML = "<div id = 'lives' class = 'lives'>4 LIVES</div><div id = 'money' class = 'money'></div><div id = 'econ' class = 'econ'></div>";
     }
 
 
+
     // ECONOMY
     setHappiness(mult) {
         this.happiness *= mult;
+        this.happiness = Math.min(Math.max(this.happiness, 0), 1);
         document.getElementById('econ').innerHTML = parseInt(this.happiness * 100) + "%";
     }
     setMoney(amt) {
@@ -23,7 +26,8 @@ class Game {
     }
     setCost(amt) {
         this.cost = Math.min(Math.max(amt, 10), 300);
-        this.setHappiness(this.convertRange())
+        this.setHappiness(this.convertRange(310-this.cost, [10, 300], [0, 2]));
+        return `Service cost set to $${this.cost}`
     }
     convertRange(value, r1, r2) { 
         return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
@@ -60,9 +64,9 @@ class Game {
             "packaged" : packaged,
         };
         this.setMoney(this.cost);
-        printDisplay(`<p class = 'new'>New package: </p><p class = 'object'>${name}</p><p class = 'new'> +$${this.cost}</p>`);
-        this.request = setTimeout(() => this.addRequest(), (Math.random() * 12000) + 18000);
-        this.removal = setTimeout(() => {this.timeoutRequest(name);this.names.push(name);}, 30000);
+        printDisplay(`<p class = 'green'>New package: </p><p class = 'dull'>${name}</p><p class = 'green'> +$${this.cost}</p>`);
+        this.request = setTimeout(() => this.addRequest(), (Math.random() * this.timing_range) + this.convertRange(1 - this.happiness, [0, 1], [5, 25]) * 1000);
+        this.removal = setTimeout(() => {this.timeoutRequest(name);this.names.push(name);}, 24000);
     }
     removeRequest(name) {
         if (this.requests[name] !== null) {
@@ -73,7 +77,7 @@ class Game {
         if (name in this.requests) {
             calculateImpact(name, false);
             this.removeRequest(name);
-            printDisplay(`<p class = 'warning'>Shipping timed out: </p><p class = 'object'>${name}</p>`);
+            printDisplay(`<p class = 'yellow'>Shipping timed out: </p><p class = 'dull'>${name}</p>`);
         }
     }
 }

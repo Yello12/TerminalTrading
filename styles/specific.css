@@ -12,8 +12,7 @@
     padding: 16px;
     padding-right:0;
     text-align:left;
-    border: 2px solid white;
-    background-color: rgb(42, 49, 83);
+    background-color: rgba(42, 49, 83, 0.425);
     border-radius : 8px;
     height: 250px;
     margin:auto;
@@ -23,13 +22,13 @@
 }
 .terminal-write {
     font-family: 'Share Tech Mono', monospace;
-    background-color: rgb(42, 49, 83);
+    background-color: rgba(42, 49, 83, 0.425);
     color: white;
     display: block;
     padding-left: 16px;
     text-align: left;
+    border: none;
     outline: none;
-    border: 2px solid white;
     border-radius : 8px;
     height: 50px;
     width:100%;

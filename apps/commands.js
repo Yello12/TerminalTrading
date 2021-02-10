@@ -5,7 +5,7 @@ function registerCommand(key) {
 }
 function command(text) {
     var command = parseS(text.toLowerCase());
-    if (command === undefined) {
+    if (command === undefined && game !== null) {
         command = parseL(text.toLowerCase());
     }
     printDisplay(command);
@@ -14,38 +14,39 @@ function command(text) {
 }
 
 function parseS(text) {
-    if (text === "help") {
-        return "help text";
-    } else if (text === "start") {
-        startGame();
-        return "Starting game";
-    } else if (text == "end") {
-        endGame();
-        return "Ending game";
+    switch (text) {
+    case "start":
+        return startGame(); 
+    case "help":
+        return "Hiiii";
+    case "end":
+        return endGame();
     }
 }
 
 function fix(object) {
     game.requests[object]["broken"] = false;
     game.setMoney(-60);
-    return `Fixed: <p class = 'object'>${object}</p><p class = 'error'> -$60</p>`;
+    return `Fixed: <p class = 'object'>${object}</p><p class = 'red'> -$60</p>`;
 }
 function package(object) {
     game.requests[object]["packaged"] = true;
     game.setMoney(-30);
-    return `Packaged: <p class = 'object'>${object}</p><p class = 'error'> -$30</p>`;
+    return `Packaged: <p class = 'object'>${object}</p><p class = 'red'> -$30</p>`;
 }
 function send(object) {
     var imp = calculateImpact(object, true);
     game.removeRequest(object);
-    return `Sent: <p class = 'object'>${object}</p><p class = 'property'> ${imp[0]}</p>`
+    return `Sent: <p class = 'object'>${object}</p><p class = 'blue'> ${imp[0]}</p>`
 }
 function dismiss(object) {
     var imp = calculateImpact(object, false);
     game.removeRequest(object);
-    return `Dismissed: <p class = 'object'>${object}</p><p class = 'property'> ${imp[0]}</p>`
+    return `Dismissed: <p class = 'object'>${object}</p><p class = 'blue'> ${imp[0]}</p>`
 }
-
+function cost(amt) {
+    return game.setCost(amt);
+}
 function calculateImpact(name, sent, missed=false) {
     var br_weight = 0.6;
     var pa_weight = 0.4;
@@ -83,43 +84,41 @@ function convertRange( value, r1, r2 ) {
 function parseL(text) {
     var an = text.split(".");
     var object = an[0];
-    if (an.length > 1 && object in game.requests) {
-        // MULTI WORD COMMANDS
+    if (an.length > 1) { if (object in game.requests) {
+        //PROPERTY
         var attribute = an[1];
-        if (attribute.endsWith(")") === true) {
-            var ar = attribute.split("(");
-            ar[1] = ar[1].replace(")", "");         
-            //FUNCTION
-            switch (ar[0]) {
-                case "fix":
-                    return fix(object);
-                case "package":
-                    return package(object);
-                case "dismiss":
-                    return dismiss(object);
-                case "send":
-                    return send(object);
-                default:
-                    return "<p class = 'error'>Invalid function</p>"
-            }
-        } else {
-            //PROPERTY
-            if (attribute in game.requests[object]) {
-                return `<p>Shipment: </p><p class = 'object'>
-                ${object}</p><p> ${attribute}: </p><p class = 'property'>
-                ${game.requests[object][attribute]}</p>`;
-            } else if (attribute === "all") {
-                return `<p>Shipment: </p><p class = 'object'>
-                ${object}</p><br> details: <p class = 'property'>
-                ${JSON.stringify(game.requests[object])
-                    .split(",").join("<br>")
-                    .split("{").join("<br>")
-                    .split("}").join("")
-                    .split('"').join("")}</p>`;
-            } else {return "<p class = 'error'>Invalid property</p>"}
-        }
-    }
-    return "<p class = 'error'>Invalid command</p>"
+        if (attribute in game.requests[object]) {
+            return `<p>Shipment: </p><p class = 'dull'>
+            ${object}</p><p> ${attribute}: </p><p class = 'blue'>
+            ${game.requests[object][attribute]}</p>`;
+        } else if (attribute === "all") {
+            return `<p>Shipment: </p><p class = 'dull'>
+            ${object}</p><br> details: <p class = 'blue'>
+            ${JSON.stringify(game.requests[object])
+                .split(",").join("<br>     ")
+                .split("{").join("<br>     ")
+                .split("}").join("")
+                .split('"').join("")}</p>`;
+        } else {return "<p class = 'red'>Invalid property</p>"}
+    }} else {
+        an = text.split("(");
+        if (an.length > 1) {
+            object = an[1].replace(")", "");
+        switch (an[0]) {
+        case "fix":
+            return fix(object);
+        case "package":
+            return package(object);
+        case "send":
+            return send(object);
+        case "dismiss":
+            return dismiss(object);
+        case "cost":
+            return cost(object);
+        default:
+            return "<p class = 'red'>Invalid function</p>"
+        }}
+    } return "<p class = 'red'>Invalid command</p>"
 }
 
 function printDisplay(text) {

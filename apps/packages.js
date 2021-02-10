@@ -7,8 +7,10 @@ function startGame() {
     game.setMoney(600);
     game.setHappiness(1);
     game.addRequest();
+    return "Game started!"
 }
 function endGame() {
     game.end();
     game = null;
+    return "Game ended!"
 }
