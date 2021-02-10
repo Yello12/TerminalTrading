@@ -2,6 +2,18 @@ html {
     background-color: rgb(64, 72, 114);
 }
 p {display:inline;font-family: 'Share Tech Mono', monospace;}
+body {
+    width: 40%;
+    margin: auto;
+    text-align:center;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+a:visited {
+    color:rgb(136, 174, 231)
+}
 .large-header {
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;
@@ -19,15 +31,15 @@ p {display:inline;font-family: 'Share Tech Mono', monospace;}
 .small-header {
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     padding: 10px;
 }
 .small-spacer {
-    padding: 20px;
+    padding: 10px;
 }
 .large-spacer {
-    padding: 60px;
+    padding: 20px;
 }
 .center {
     text-align: center;

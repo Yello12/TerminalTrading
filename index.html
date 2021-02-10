@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>North East Trading Co.</title>
     <link rel = "stylesheet" href = "styles/general.css">
     <link rel = "stylesheet" href = "styles/specific.css">
@@ -7,13 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </header>
 <body>
-    <h1 class = "large-header">North East Trading Co.</h1>
+    <h1 class = "large-header">Terminal Trading Co.</h1>
+    <div class = "small-spacer"></div>
+    <p class = "small-header">Want to contribute or learn more?  
+        <a href = "https://github.com/Yello12">Github</a>  |  
+        <a href = "https://www.youtube.com/channel/UCufsXWKLXrtvH9Rpfi8WM8A">Youtube</a>
+    </p>
     <div class = "small-spacer"></div>
     <div class = "center">
         <div class = "terminal">
             <div id = "display" class = "terminal-display"></div>
             <input id = "input" onkeypress="registerCommand(event.keyCode)" type="text" placeholder = "> Write commands here" class = "terminal-write"></input>
         </div>
+    </div>
+    <div id = "stats" class = "stats">
+        <div class = "placeholder">START A GAME TO SEE STATS</div>
     </div>
     <script src = "apps/app.js"></script>
     <script src = "apps/game.js"></script>
