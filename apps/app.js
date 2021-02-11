@@ -36,3 +36,5 @@ function checkResize() {
 }
 window.addEventListener("resize", checkResize);
 checkResize();
+document.getElementById("placeholder").style.display = "inline-block";
+document.getElementById("stats").style.display = "none";

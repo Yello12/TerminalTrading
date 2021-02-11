@@ -59,6 +59,7 @@
     color: rgb(219, 141, 141);
 }
 .money {
+    transition: transform 1s;
     display: inline;
     padding: 16px;
     margin: 16px;

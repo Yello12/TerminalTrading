@@ -17,23 +17,37 @@
     <div class = "small-spacer"></div>
     <div class = "center">
         <div class = "terminal">
-            <div id = "display" class = "terminal-display"></div>
-            <input autocomplete="off" id = "input" onkeypress="registerCommand(event.keyCode)" type="text" placeholder = "> Write commands here" class = "terminal-write"></input>
+            <div id = "display" class = "terminal-display">
+                <p id = "write"></p>
+                <div id = "read" class = "medium-header">TYPE "START" TO PLAY</div>
+            </div>
+            <input autocomplete="off" id = "input" 
+                onkeypress="registerCommand(event.keyCode)" type="text" 
+                placeholder = "Write commands here" class = "terminal-write">
+            </input>
         </div>
     </div>
-    <div id = "stats" class = "stats">
-        <div id = 'lives' class = 'lives'>
-            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="rgb(219, 118, 118)" width="18px" height="18px"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M10.67,19.8C5.15,14.85,1.95,12.16,2,8.41c0.04-2.97,2.3-4.39,2.35-4.43C7.96,1.52,11.24,4.2,12,5.09 c0.75-0.88,3.99-3.51,7.56-1.16c0.52,0.34,2.23,1.65,2.42,4.12c0.32,4.28-4.14,7.76-8.65,11.76c-0.38,0.34-0.86,0.5-1.34,0.5 C11.52,20.31,11.05,20.14,10.67,19.8z"/></g></svg>
-        4 LIVES</div>
-        <div id = 'money' class = 'money'>
-            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="rgb(164, 255, 164)" width="18px" height="18px"><g><rect fill="none" height="0" width="0"/></g><g><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12.84,17.77v0.39c0,0.46-0.37,0.83-0.83,0.83h0 c-0.46,0-0.83-0.37-0.83-0.83v-0.45c-1.54-0.35-2.33-1.32-2.73-2.11c-0.23-0.44-0.01-0.99,0.45-1.18l0.07-0.03 c0.41-0.17,0.87,0,1.08,0.39c0.32,0.61,0.96,1.38,2.13,1.38c0.93,0,1.98-0.47,1.98-1.6c0-0.96-0.7-1.47-2.28-2.03 c-1.42-0.51-3.35-1.17-3.35-3.31c0-1.81,1.52-2.75,2.66-2.97V5.83C11.17,5.37,11.54,5,12,5h0c0.46,0,0.83,0.37,0.83,0.83v0.39 c1.1,0.18,1.78,0.76,2.19,1.28c0.35,0.45,0.18,1.1-0.34,1.33l0,0c-0.36,0.15-0.78,0.04-1.02-0.27c-0.28-0.38-0.78-0.77-1.61-0.77 c-0.7,0-1.81,0.37-1.81,1.39c0,1.1,1.28,1.46,2.64,1.91c1.8,0.63,3.03,1.58,3.01,3.44C15.9,17.43,12.89,17.76,12.84,17.77z"/></g></svg>
-        $2015</div>
-        <div id = 'econ' class = 'econ'>
-            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" fill="rgb(219, 204, 118)" width="18px" height="18px"><rect fill="none" height="0" width="0"/><path d="M11.99,2C6.47,2,2,6.48,2,12s4.47,10,9.99,10C17.52,22,22,17.52,22,12S17.52,2,11.99,2z M8.5,8C9.33,8,10,8.67,10,9.5 S9.33,11,8.5,11S7,10.33,7,9.5S7.67,8,8.5,8z M16.75,14.75C15.8,16.39,14.03,17.5,12,17.5s-3.8-1.11-4.75-2.75 C7.06,14.42,7.31,14,7.69,14h8.62C16.7,14,16.94,14.42,16.75,14.75z M15.5,11c-0.83,0-1.5-0.67-1.5-1.5S14.67,8,15.5,8 S17,8.67,17,9.5S16.33,11,15.5,11z"/></svg>
-        28%</div>
+    <div class = "holder">
+        <div id = "stats" class = "stats">
+            <div id = 'lives' class = 'lives'>
+                <object id = 'li' type="image/svg+xml" data="img/heartw1.svg">Heart</object>                
+            <p id = 'lm'></p></div>
+            <div id = 'money' class = 'money'>
+                <object id = 'mo' type="image/svg+xml" data="img/moneyw1.svg">Money</object>
+            <p id = 'mm'></p></div>
+            <div id = 'econ' class = 'econ'>
+                <object id = 'ec' type="image/svg+xml" data="img/happyw1.svg">Happy</object>
+            <p id = 'em'></p></div>
+        </div>
+        <div id = "placeholder" class = 'stats'>START A GAME TO SEE STATS</div>
     </div>
+    <div class = "small-spacer"></div>
+    <p class = "small-header">Confused?  
+        <a href = "https://github.com/Yello12">Github</a>  |  
+        <a href = "https://www.youtube.com/channel/UCufsXWKLXrtvH9Rpfi8WM8A">Youtube</a>
+    </p>
     <script src = "apps/app.js"></script>
     <script src = "apps/game.js"></script>
-    <script src = apps/packages.js></script>
+    <script src = apps/inter.js></script>
     <script src = apps/commands.js></script>
 </body>
