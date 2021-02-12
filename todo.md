@@ -1,14 +1,12 @@
 # Todo List
 ## Economy
-- Unify game object
 - Better listing of attributes
 - Lives
-- Punishment for not submitting
 - Effect on happiness and times
+- Fix setting cost
 ## Display
-- Better currency animations
 - Nice submitting animation
-- Money popups
+- Notifications
 ## Ideas
 - Money use
 - Game over

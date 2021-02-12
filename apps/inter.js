@@ -1,6 +1,7 @@
 var game = null;
 
 function startGame() {
+    if (game) {return}
     game = null;
     startDisplay();
     game = new Game(600, 1);
@@ -9,6 +10,7 @@ function startGame() {
     game.startLoop();
 }
 function endGame() {
+    if (!game) {return}
     game.endLoop();
     game = null;
     endDisplay();
@@ -22,7 +24,7 @@ function startDisplay() {
 function endDisplay() {
     document.getElementById("write").innerHTML = "";
     document.getElementById("write").style.display = "none";
-    document.getElementById("read").style.display = "inline";
+    document.getElementById("read").style.display = "block";
     document.getElementById("placeholder").style.display = "inline-block";
     document.getElementById("stats").style.display = "none";
 }

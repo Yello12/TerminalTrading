@@ -24,6 +24,27 @@ object {
 object:hover {
     transform: scale(2.4, 2.4) rotate(10deg);
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #00000025;
+    border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.301);
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.644);
+}
 .large-header {
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;
@@ -32,9 +53,10 @@ object:hover {
     padding: 30px;
 }
 .medium-header {
+    margin-top: 80px;
     text-align: center;
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 32px;
+    font-size: 24px;
     color: white;
     padding: 20px;
     opacity: 0.7;
