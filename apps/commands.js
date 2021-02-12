@@ -27,35 +27,57 @@ function parseS(text) {
 }
 
 function fix(object) {
-    object.broken = false
-    game.setMoney(-50);
-    return `Now fixed: <p class = 'dull'>${object}
-    </p> <p class = 'orange'>(This boosts your demand once sent)</p>`
+    if (object in game.requests) {
+        object.broken = false
+        game.setMoney(-50);
+        return `Now fixed: <p class = 'dull'>${object}
+        </p> <p class = 'orange'>(This boosts your demand once sent)</p>`
+    } else {
+        return "<p class = 'red'>Invalid package</p>"
+    }
 }
 function package(object) {
-    object.packaged = true;
-    game.setMoney(-20);
-    return `Now packaged: <p class = 'dull'>${object}
-    </p> <p class = 'orange'>(This boosts your demand once sent)</p>`
+    if (object in game.requests) {
+        object.packaged = true;
+        game.setMoney(-20);
+        return `Now packaged: <p class = 'dull'>${object}
+        </p> <p class = 'orange'>(This boosts your demand once sent)</p>`
+    } else {
+        return "<p class = 'red'>Invalid package</p>"
+    }
 }
 function send(object) {
-    return game.sendRequest(object);
+    if (object in game.requests) {
+        return game.sendRequest(object);
+    } else {
+        return "<p class = 'red'>Invalid package</p>"
+    }
 }
 function dismiss(object) {
-    return game.dismissRequest(object);
+    if (object in game.requests) {
+        return game.dismissRequest(object);
+    } else {
+        return "<p class = 'red'>Invalid package</p>"
+    }
 }
 function cost(amt) {
-    return game.setCost(amt);
+    if (Helper.isNumeric(amt)) {
+        return game.setCost(amt);
+    } else {
+        return "<p class = 'red'>Invalid value</p>"
+    }
 }
 function close() {
     game.setClosed(true);
-    return `Business is now closed <p class = 'orange'>(This halts new packages, but does not stop previous ones.)</p>`
+    return `Business is now closed <p class = 'orange'>(This halts new packages, but does not stop previous ones)</p>`
 }
 function open() {
     game.setClosed(false);
     return `Business is now open <p class = 'orange'>(This allows new packages to come in)</p>`
 }
-
+function status() {
+    return `Status: <p class = 'blue'>${game.closed}</p>  Service cost: <p class = 'blue>${game.cost}</p>`
+}
 function parseL(text) {
     var an = text.split(".");
     var object = an[0];
@@ -94,6 +116,8 @@ function parseL(text) {
             return close();
         case "open":
             return open();
+        case "status":
+            return status();
         default:
             return "<p class = 'red'>Invalid function</p>"
         }}

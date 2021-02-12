@@ -1,17 +1,19 @@
 class Game {
 
-    maxChance = 10;
+    maxChance = 45;
+    minChance = 15;
     hRange = 0.2;
     over = false;
     boxNames = ["chicken", "foodbarrel", "letterbox", "metalcargo", "eggs", "winston"];
     timers = []
+    time = 0;
 
     constructor(money, happiness) {
         this.requests = {};
         this.money = money;
         this.happiness = happiness;
         this.cost = 120;
-        this.closed = true;
+        this.closed = false;
         Helper.shuffle(this.boxNames);
     }
     // ECONOMY
@@ -24,14 +26,16 @@ class Game {
     }
     setMoney(amt) {
         this.money += amt;
+        this.money = parseInt(this.money);
         document.getElementById('mm').innerHTML = "$" + this.money;
         this.reactIcon('mo');
     }
     setCost(amt) {
+        var previousCost = this.cost;
         this.cost = Math.min(Math.max(amt, 10), 300);
-        this.setHappiness(Helper.convertRange(310 - this.cost, [10, 300], [0, 2]));
+        this.setHappiness(Helper.convertRange((previousCost - this.cost), [-290, 290], [0, 2]));
         return `Service cost set to $${this.cost} 
-        <p class = 'orange'>(Lower = higher demand, Higher = lower demand)</p>`
+        <p class = 'orange'>(Lower = higher demand)</p>`
     }
     setClosed(value) {
         this.closed = value;
@@ -46,10 +50,19 @@ class Game {
         }
     }
     loop() {
-        if (this.over || this.closed) {return}
-        var boxChance = Helper.convertRange(this.happiness, [0, 1], [5, this.maxChance]);
-        console.log(`Box chance: ${boxChance}`);
-        if (Math.random() * 100 < boxChance) {
+        if (this.over) {return}
+        if (this.closed) {
+            this.time = 0;
+            this.setHappiness(1.1);
+            this.setMoney(-5);
+            setTimeout(() => {this.loop();}, 1000);
+            return
+        }
+        this.time += 1;
+        var boxChance = parseInt(this.maxChance + this.minChance
+         - Helper.convertRange(this.happiness, [0, 1], [this.minChance, this.maxChance]));
+        if (this.time === boxChance) {
+            this.time = 0;
             const name = this.boxNames.shift();
             const distance = parseInt((Math.random() * 720) + 80);
             const weight = parseInt((Math.random() * 360) + 40);
@@ -65,24 +78,44 @@ class Game {
             };
             this.setMoney(this.cost);
             printDisplay(`<p class = 'green'>New package: </p><p class = 'dull'> ${name}</p>`);
-            this.timers.push(setTimeout(() => {this.removeRequest(name);}, 20000));
+            this.timers.push(setTimeout(() => {this.removeRequest(name);}, 30000));
         }
-        setTimeout(() => {this.loop();}, 1000)
+        setTimeout(() => {this.loop();}, 1000);
     }
     removeRequest(name) {
-        if (this.requests[name] !== null) {
-            this.setHappiness(0.5);
+        if (this.requests[name] !== undefined) {
+            this.setHappiness(0);
             this.setMoney(-140);
-            printDisplay(`<p class = 'yellow'>Package timed out:</p><p class = 'dull'> ${name}</p>`);
+            printDisplay(`<p class = 'yellow'>Package timed out: </p><p class = 'dull'>${name}</p>`);
             delete this.requests[name];
         }
         this.boxNames.push(name);
     }
     sendRequest(name) {
-        return
+        var weight = this.requests[name].weight
+        var distance = this.requests[name].distance
+        var broken = this.requests[name].broken
+        var packaged = this.requests[name].packaged
+        var cost = 60;
+        var happiness = 1;
+        var broken_factor = 1;
+        var packaged_factor = 1;
+        var weight_factor = Helper.convertRange(weight, [40, 400], [0.5, 1.5]);
+        var distance_factor = Helper.convertRange(distance, [80, 800], [0.6, 1.4]);
+        if (broken) {broken_factor = 0.6} else {broken_factor = 1.4}
+        if (packaged) {packaged_factor = 0.8} else {packaged_factor = 1.2}
+        cost *= weight_factor * distance_factor;
+        happiness *= broken_factor * packaged_factor;
+        this.setMoney(-cost);
+        this.setHappiness(happiness);
+        delete this.requests[name];
+        return `Request sent: <p class = 'dull'>${name}</p>`
     }
     dismissRequest(name) {
-        return 
+        this.setHappiness(0.5);
+        this.setMoney(-10);
+        delete this.requests[name];
+        return `Request dismissed: <p class = 'dull'>${name}</p>`
     }
     reactIcon(name) {
         document.getElementById(name).style.transform = "scale(3, 3) rotate(16deg)";
