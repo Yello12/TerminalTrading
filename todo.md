@@ -3,11 +3,11 @@
 - Better listing of attributes
 - Effect on happiness and times
 ## Display
-- Nice submitting animation
 - Notifications
+- Whenever money is made, add + money and - happiness
 ## Ideas
 - Lives
 - Money use
 - Game over
 ## BUGS
-- Fix setting cost
+- Complete setting cost

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North East Trading Co.</title>
+    <link rel = "stylesheet" href = "../styles/general.css">
+    <link rel = "stylesheet" href = "docs.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src = docs.js></script>
+</header>
+<body>
+    <div class = "large-spacer"></div>
+    <p class = "large-header">Terminal Trading Co. Documentation</p>
+    <div class = "small-spacer"></div>
+    <p class = "small-header">Game is here:
+        <a href = "../index.html">Terminal Trading Co.</a>  Or learn more:  
+        <a href = "https://github.com/Yello12">Github Repo</a>
+    </p>
+    <div class = "large-spacer"></div>
+    <div id = "mh">Background</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id = "mp"> The year is 2069, and the physical shipment industry is at an all time low.
+            The new era of digital shipping has just begun, and you have setup your new company called Terminal Trading Co.
+        </p>
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">Getting Started</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id = "mp"> Terminal Trading Co. is a game about simple 
+        economics accompanied by some simple terminal commands. 
+        To get started with the game, type </p>
+        <p class = 'green'>start</p>
+        <p id = "mp"> into the command bar.</p>
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">The Goal</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id ="mp">The goal of the game is to get as much money as possible.</p> 
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">How Do You Earn Money?</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id ="mp">Packages or shipments in the form of: <br><br>[ </p>
+        <p class= 'green'>New Package: </p><p class = 'dull'>package_name</p>
+        <p id ="mp"> ] <br><br> will come in every 15 to 100 seconds and appear on the terminal display. 
+        When a package comes in, it gives you a set amount of money. 
+        This is the only way to gain money <strong>directly</strong> in the game.
+        <br><br> The intervals between packages arriving is based on the demand meter, </p>
+        <p class = 'yellow'>(the yellow percentage)</p>
+        <p id ='mp'> The higher the percentage is, the faster you will be able to get package orders, 
+        which in turn results in more money.
+        <br><br>You can set the money gained when recieving a package by writing: <br><br>[ </p>
+        <p class= 'blue'>cost(</p><p class = 'dull'>new_service_cost</p><p class= 'blue'>)</p>
+        <p id = 'mp'> ]<br><br></p>
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">What's the twist?</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id ="mp">While you can earn money by getting these packages, 
+        <strong>everything comes at a cost</strong>. 
+        You are only the middleman in this service, so you must take the people's orders, and ship it for them. 
+        This costs money, but if packages are not shipped it will hurt the demand meter, 
+        in turn, making earning money much slower.
+        <br><br>You can send packages via: <br><br>[ </p>
+        <p class= 'blue'>send(</p><p class = 'dull'>package_name</p><p class= 'blue'>)</p>
+        <p id = 'mp'> ]<br><br>
+        However, shipping these packages off to their destinations costs money and can sometimes over turn your profit, 
+        resulting in no money gained or even some lost.
+        <br><br>To stop this, you can dismiss packages via: <br><br>[ </p>
+        <p class= 'blue'>dismiss(</p><p class = 'dull'>package_name</p><p class= 'blue'>)</p>
+        <p id = 'mp'> ]<br><br>
+        While this saves you money, it can damage your demand meter (also known as reputation).
+        <strong>But</strong>, always do this over just ignoring a package, 
+        because forgetting to acknowledge a package will cause you to lose way more demand and money.</p>
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">How do you know when to ship a package?</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id ="mp">Once a package is recieved, it has four attributes in it, <br><br>
+        [distance, weight, broken (true/false), packaged (true/false)]<br><br>
+        You can see what these are for each package using: <br><br>[ </p>
+        <p class= 'dull'>package_name.</p><p class = 'blue'>attribute_name</p>
+        <p id = 'mp'> ]<br><br>
+        A shorter way to see all the attributes of a package is using .all.<br><br>
+        If the distance on a package is high, 
+        then the package will be more costly to ship. (distance range: 80 - 800)<br>
+        If the weight on a package is high, 
+        then the package will be more costly to ship. (weight range: 40 - 400)<br>
+        If the package is broken, it will damage the demand (reputation) when sent.<br>
+        If the package is unpacked, it will also damage the demand (reputation) when sent.<br><br>
+        Based on these variables, you must determine if the package is worth sending or not. 
+        If you dismiss a package, it only costs $10 and loses 5% reputation.</p> 
+    </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">How do you recover from having a low demand or reputation?</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p id = "mp"> There are three ways to raise your demand meter:<br><br>
+            1. Send packages to people. Sending packages can increase demand if not broken and packaged.<br><br>
+            2. Lower the cost. Lowering the cost of your service raises your demand, 
+            because more people can afford it.<br><br>
+            3. Open and close the business. Discussed in the section below (other features), 
+            you may open and close your business. When closed, 
+            you cannot recieve new packages and your money will slowly go down. 
+            <strong>But</strong>, your demand meter will constantly rise.<br><br>
+
+        </p>
+    </div>
+</body>

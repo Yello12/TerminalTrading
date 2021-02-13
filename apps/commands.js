@@ -1,6 +1,9 @@
 function registerCommand(key) {
-    if (key === 13) {
-        command(document.getElementById("input").value);
+    var input = document.getElementById("input").value;
+    if (key === 13 && input !== "") {
+        command(input);
+        document.getElementById('input').style.transform = "scale(1.02, 1.1)";
+        setTimeout(function() {document.getElementById('input').style.transform = "scale(1, 1)";}, 100);
     }
 }
 function command(text) {
@@ -76,7 +79,7 @@ function open() {
     return `Business is now open <p class = 'orange'>(This allows new packages to come in)</p>`
 }
 function status() {
-    return `Status: <p class = 'blue'>${game.closed}</p>  Service cost: <p class = 'blue>${game.cost}</p>`
+    return `Closed: <p class = 'blue'>${game.closed}</p> Service cost: <p class = 'blue'>${game.cost}</p>`
 }
 function parseL(text) {
     var an = text.split(".");

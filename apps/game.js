@@ -1,7 +1,8 @@
 class Game {
 
-    maxChance = 45;
+    maxChance = 100;
     minChance = 15;
+    packageTimeout = 40;
     hRange = 0.2;
     over = false;
     boxNames = ["chicken", "foodbarrel", "letterbox", "metalcargo", "eggs", "winston"];
@@ -18,22 +19,29 @@ class Game {
     }
     // ECONOMY
     setHappiness(mult) {
-        this.happiness += Helper.convertRange(mult, [0, 2], [-this.hRange, this.hRange]);
+        var add = Helper.convertRange(mult, [0, 2], [-this.hRange, this.hRange]);
+        this.happiness += add;
         this.happiness = Math.min(Math.max(this.happiness, 0), 1);
         var econ = document.getElementById('em');
         econ.innerHTML = parseInt(this.happiness * 100) + "%";
         this.reactIcon('ec');
+        var update = document.getElementById("update_ec");
+        if (add >= 0) {update.innerHTML = `+${parseInt(add * 100)}%`}
+        else {update.innerHTML = `-${Math.abs(parseInt(add * 100))}%`}
     }
     setMoney(amt) {
         this.money += amt;
         this.money = parseInt(this.money);
         document.getElementById('mm').innerHTML = "$" + this.money;
         this.reactIcon('mo');
+        var update = document.getElementById("update_mo");
+        if (amt >= 0) {update.innerHTML = `+$${parseInt(amt)}`}
+        else {update.innerHTML = `-$${Math.abs(parseInt(amt))}`}
     }
     setCost(amt) {
         var previousCost = this.cost;
         this.cost = Math.min(Math.max(amt, 10), 300);
-        this.setHappiness(Helper.convertRange((previousCost - this.cost), [-290, 290], [0, 2]));
+        this.setHappiness(Helper.convertRange((previousCost - this.cost), [-100, 100], [0, 2]));
         return `Service cost set to $${this.cost} 
         <p class = 'orange'>(Lower = higher demand)</p>`
     }
@@ -78,14 +86,14 @@ class Game {
             };
             this.setMoney(this.cost);
             printDisplay(`<p class = 'green'>New package: </p><p class = 'dull'> ${name}</p>`);
-            this.timers.push(setTimeout(() => {this.removeRequest(name);}, 30000));
+            this.timers.push(setTimeout(() => {this.removeRequest(name);}, this.packageTimeout * 1000));
         }
         setTimeout(() => {this.loop();}, 1000);
     }
     removeRequest(name) {
         if (this.requests[name] !== undefined) {
             this.setHappiness(0);
-            this.setMoney(-140);
+            this.setMoney(-220);
             printDisplay(`<p class = 'yellow'>Package timed out: </p><p class = 'dull'>${name}</p>`);
             delete this.requests[name];
         }
@@ -96,7 +104,7 @@ class Game {
         var distance = this.requests[name].distance
         var broken = this.requests[name].broken
         var packaged = this.requests[name].packaged
-        var cost = 60;
+        var cost = 40;
         var happiness = 1;
         var broken_factor = 1;
         var packaged_factor = 1;
@@ -105,7 +113,7 @@ class Game {
         if (broken) {broken_factor = 0.6} else {broken_factor = 1.4}
         if (packaged) {packaged_factor = 0.8} else {packaged_factor = 1.2}
         cost *= weight_factor * distance_factor;
-        happiness *= broken_factor * packaged_factor;
+        happiness = broken_factor * packaged_factor;
         this.setMoney(-cost);
         this.setHappiness(happiness);
         delete this.requests[name];

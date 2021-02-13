@@ -35,6 +35,7 @@
     overflow: auto;
     margin:auto;
     margin-top: 8px;
+    transition: transform 0.1s;
 }
 .stats {
     font-family: 'Patrick Hand SC', cursive;
@@ -47,7 +48,7 @@
     width:100%;
     margin: auto;
     margin-top: 32px;
-    background-color: rgba(42, 49, 83, 0.425);
+    /* background-color: rgba(42, 49, 83, 0.425); */
     border-radius : 8px;
     opacity: 0.7;
 }
@@ -79,4 +80,8 @@
     margin: 16px;
     font-family: 'Patrick Hand SC', cursive;
     color: rgb(255, 255, 255);
+}
+.update {
+    vertical-align: center;
+    font-size: 18px;
 }
