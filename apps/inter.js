@@ -5,6 +5,7 @@ function startGame() {
     game = null;
     startDisplay();
     game = new Game(600, 1);
+    printDisplay(`Game starts in ${game.minChance} seconds`);
     game.setHappiness(1);
     game.setMoney(0);
     game.startLoop();
