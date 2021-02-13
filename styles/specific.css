@@ -42,8 +42,6 @@
     color: white;
     text-align: center;
     display: block;
-    padding: 16px;
-    padding-right:0;
     font-size: 24px;
     width:100%;
     margin: auto;
@@ -51,13 +49,6 @@
     /* background-color: rgba(42, 49, 83, 0.425); */
     border-radius : 8px;
     opacity: 0.7;
-}
-.lives {
-    display: inline;
-    padding: 16px;
-    margin: 16px;
-    font-family: 'Patrick Hand SC', cursive;
-    color: rgb(219, 141, 141);
 }
 .money {
     transition: transform 1s;

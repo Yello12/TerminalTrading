@@ -31,8 +31,8 @@ function parseS(text) {
 
 function fix(object) {
     if (object in game.requests) {
-        object.broken = false
-        game.setMoney(-50);
+        game.requests[object].broken = false;
+        game.setMoney(-40);
         return `Now fixed: <p class = 'dull'>${object}
         </p> <p class = 'orange'>(This boosts your demand once sent)</p>`
     } else {
@@ -41,7 +41,7 @@ function fix(object) {
 }
 function package(object) {
     if (object in game.requests) {
-        object.packaged = true;
+        game.requests[object].packaged = true;
         game.setMoney(-20);
         return `Now packaged: <p class = 'dull'>${object}
         </p> <p class = 'orange'>(This boosts your demand once sent)</p>`

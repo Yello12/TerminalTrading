@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <header>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North East Trading Co.</title>
+    <title>Terminal Trading Co. Docs</title>
     <link rel = "stylesheet" href = "../styles/general.css">
     <link rel = "stylesheet" href = "docs.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src = docs.js></script>
 </header>
 <body>
     <div class = "large-spacer"></div>
     <p class = "large-header">Terminal Trading Co. Documentation</p>
     <div class = "small-spacer"></div>
-    <p class = "small-header">Game is here:
-        <a href = "../index.html">Terminal Trading Co.</a>  Or learn more:  
+    <p class = "small-header">Game:
+        <a href = "../index.html">Terminal Trading Co.</a>  Learn more or contribute:  
         <a href = "https://github.com/Yello12">Github Repo</a>
     </p>
     <div class = "large-spacer"></div>
@@ -22,6 +21,8 @@
     <div id = "md">
         <p id = "mp"> The year is 2069, and the physical shipment industry is at an all time low.
             The new era of digital shipping has just begun, and you have setup your new company called Terminal Trading Co.
+            You are the middleman in the digital shipping industry. People will send packages to you, 
+            and you must ship them to their destination.
         </p>
     </div>
     <div class = "large-spacer"></div>
@@ -46,7 +47,7 @@
     <div id = "md">
         <p id ="mp">Packages or shipments in the form of: <br><br>[ </p>
         <p class= 'green'>New Package: </p><p class = 'dull'>package_name</p>
-        <p id ="mp"> ] <br><br> will come in every 15 to 100 seconds and appear on the terminal display. 
+        <p id ="mp"> ] <br><br> will come in every 10 to 80 seconds and appear on the terminal display. 
         When a package comes in, it gives you a set amount of money. 
         This is the only way to gain money <strong>directly</strong> in the game.
         <br><br> The intervals between packages arriving is based on the demand meter, </p>
@@ -54,7 +55,7 @@
         <p id ='mp'> The higher the percentage is, the faster you will be able to get package orders, 
         which in turn results in more money.
         <br><br>You can set the money gained when recieving a package by writing: <br><br>[ </p>
-        <p class= 'blue'>cost(</p><p class = 'dull'>new_service_cost</p><p class= 'blue'>)</p>
+        <p class= 'blue'>cost(</p><p class = 'orange'>new_service_cost</p><p class= 'blue'>)</p>
         <p id = 'mp'> ]<br><br></p>
     </div>
     <div class = "large-spacer"></div>
@@ -67,12 +68,12 @@
         This costs money, but if packages are not shipped it will hurt the demand meter, 
         in turn, making earning money much slower.
         <br><br>You can send packages via: <br><br>[ </p>
-        <p class= 'blue'>send(</p><p class = 'dull'>package_name</p><p class= 'blue'>)</p>
+        <p class= 'blue'>send(</p><p class = 'orange'>package_name</p><p class= 'blue'>)</p>
         <p id = 'mp'> ]<br><br>
         However, shipping these packages off to their destinations costs money and can sometimes over turn your profit, 
         resulting in no money gained or even some lost.
         <br><br>To stop this, you can dismiss packages via: <br><br>[ </p>
-        <p class= 'blue'>dismiss(</p><p class = 'dull'>package_name</p><p class= 'blue'>)</p>
+        <p class= 'blue'>dismiss(</p><p class = 'orange'>package_name</p><p class= 'blue'>)</p>
         <p id = 'mp'> ]<br><br>
         While this saves you money, it can damage your demand meter (also known as reputation).
         <strong>But</strong>, always do this over just ignoring a package, 
@@ -82,10 +83,10 @@
     <div id = "mh">How do you know when to ship a package?</div>
     <div class = "divider"></div>
     <div id = "md">
-        <p id ="mp">Once a package is recieved, it has four attributes in it, <br><br>
-        [distance, weight, broken (true/false), packaged (true/false)]<br><br>
-        You can see what these are for each package using: <br><br>[ </p>
-        <p class= 'dull'>package_name.</p><p class = 'blue'>attribute_name</p>
+        <p id ="mp">Once a package is recieved, it has four attributes in it,<br><br>[ </p>
+        <p class= 'blue'>[distance, weight, broken (true/false), packaged (true/false)</p>
+        <p id = "mp"> ]<br><br>You can see what these are for each package using: <br><br>[ </p>
+        <p class= 'orange'>package_name.</p><p class = 'blue'>attribute_name</p>
         <p id = 'mp'> ]<br><br>
         A shorter way to see all the attributes of a package is using .all.<br><br>
         If the distance on a package is high, 
@@ -112,4 +113,27 @@
 
         </p>
     </div>
+    <div class = "large-spacer"></div>
+    <div id = "mh">Other Features</div>
+    <div class = "divider"></div>
+    <div id = "md">
+        <p class = 'blue'>status()</p>
+        <p id = "mp"> - Gives the service cost and if the business is open or closed.<br><br></p>
+        <p class = 'blue'>close()</p>
+        <p id = "mp"> - Closes the business. If your business is closed, you can't recieve requests, 
+        but your demand goes up and your money slowly goes down.<br><br></p>
+        <p class = 'blue'>open()</p>
+        <p id = "mp"> - Opens the business. If your business is open you can recieve packages.<br><br></p>
+        <p class= 'blue'>package(</p><p class = 'orange'>package_name</p><p class= 'blue'>)</p>
+        <p id = "mp"> - Makes the targeted package's [packaged] property true, 
+        giving it more potential to increase business demand once sent. However, this costs $20.<br><br></p>
+        <p class= 'blue'>fix(</p><p class = 'orange'>package_name</p><p class= 'blue'>)</p>
+        <p id = "mp"> - Makes the targeted package's [broken] property false, 
+        giving it more potential to increase business demand once sent. However, this costs $40.<br><br></p>
+        <p class = 'green'>end</p>
+        <p id = "mp"> - ends the game. You cannot return to your previous session after running this command.</p>
+    </div>
+    <div class = "large-spacer"></div>
+    <div class = "large-spacer"></div>
+    <script src = docs.js></script>
 </body>

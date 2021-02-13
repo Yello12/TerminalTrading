@@ -1,8 +1,8 @@
 function checkResize() {
     if (window.innerWidth < 1000) {
-        document.body.width = 100 + "%";
+        document.body.style.width = 90 + "%";
     } else {
-        document.body.width = 60 + "%";
+        document.body.style.width = 60 + "%";
     }
 }
 

@@ -1,11 +1,28 @@
 class Game {
 
-    maxChance = 100;
-    minChance = 15;
+    maxChance = 80;
+    minChance = 10;
     packageTimeout = 40;
     hRange = 0.2;
     over = false;
-    boxNames = ["chicken", "foodbarrel", "letterbox", "metalcargo", "eggs", "winston"];
+    boxNames = ["chicken", 
+                "foodbarrel", 
+                "letterbox", 
+                "metalcargo", 
+                "eggs", 
+                "winston",
+                "bananacrate",
+                "gregbomb",
+                "programmingpouch",
+                "chemicalbottles",
+                "woodbarrel",
+                "musicalnote",
+                "encryption",
+                "moneyshipment",
+                "laundrybasket",
+                "skateboards",
+                "gold",
+                "maps"];
     timers = []
     time = 0;
 
@@ -69,7 +86,7 @@ class Game {
         this.time += 1;
         var boxChance = parseInt(this.maxChance + this.minChance
          - Helper.convertRange(this.happiness, [0, 1], [this.minChance, this.maxChance]));
-        if (this.time === boxChance) {
+        if (this.time >= boxChance) {
             this.time = 0;
             const name = this.boxNames.shift();
             const distance = parseInt((Math.random() * 720) + 80);
@@ -108,10 +125,10 @@ class Game {
         var happiness = 1;
         var broken_factor = 1;
         var packaged_factor = 1;
-        var weight_factor = Helper.convertRange(weight, [40, 400], [0.5, 1.5]);
-        var distance_factor = Helper.convertRange(distance, [80, 800], [0.6, 1.4]);
-        if (broken) {broken_factor = 0.6} else {broken_factor = 1.4}
-        if (packaged) {packaged_factor = 0.8} else {packaged_factor = 1.2}
+        var weight_factor = Helper.convertRange(weight, [40, 400], [0.5, 2]);
+        var distance_factor = Helper.convertRange(distance, [80, 800], [0.6, 2]);
+        if (broken === true) {broken_factor = 0.6;} else {broken_factor = 1.4;}
+        if (packaged === true) {packaged_factor = 1.2;} else {packaged_factor = 0.8;}
         cost *= weight_factor * distance_factor;
         happiness = broken_factor * packaged_factor;
         this.setMoney(-cost);
